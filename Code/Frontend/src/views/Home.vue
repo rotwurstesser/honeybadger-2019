@@ -1,13 +1,12 @@
 <template>
   <div class="home m-6 ">
     <WeatherDisplay />
-    <h3>Angebote</h3>
+    <h3 class="-mb-8">Angebote</h3>
     <InstagramImages hashtag="gornerbahn" />
-    <h3>Aktivitäten</h3>
+    <h3 class="-mb-8 mt-12">Aktivitäten</h3>
     <InstagramImages hashtag="mountainclimbing" />
-    <h3>Interaktive Map</h3>
+    <h3 class="mt-12">Interaktive Map</h3>
     <iframe
-      class="p-5"
       src="https://openmaptiles.github.io/positron-gl-style/#8/46.0190/7.7460"
       width="100%"
       height="480"
@@ -27,7 +26,7 @@ export default {
 <style lang="postcss">
 .home {
   & h3 {
-    @apply text-3xl;
+    @apply text-3xl font-bold;
   }
   & .weather-component {
     & span,
