@@ -7,7 +7,7 @@
         name="close"
       />
     </router-link>
-    <div class="-mt-32 relative videobox mx-6">
+    <div class="-mt-56 relative videobox mx-6">
       <div
         v-if="paused"
         class="darkener rounded-squarecard absolute w-full h-full"
