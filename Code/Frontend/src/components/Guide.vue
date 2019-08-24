@@ -5,7 +5,7 @@
     </div>
 
     <weather-display />
-    <div class="text-white mt-10 ml-6">
+    <div class="text-white mt-8 ml-6">
       <h1 class="font-bold text-3xl">Das Wetter wird sonniger!</h1>
       <span
         class="inline-block mt-4 text-2xl"
@@ -14,18 +14,30 @@
     <div class="mt-20 opacity-50 text-2xl">
       <span>Schönwetterprogramm</span>
     </div>
+
+    <div>
+      <image-slider :images="images" />
+    </div>
   </div>
 </template>
 
 <script>
 import WeatherDisplay from "@/components/WeatherDisplay";
 import SvgIcon from "@/components/SvgIcon";
+import ImageSlider from "@/components/ImageSlider";
+import Picture1 from "@/assets/bitmap.png";
 
 export default {
   name: "Guide",
   components: {
     WeatherDisplay,
-    SvgIcon
+    SvgIcon,
+    ImageSlider
+  },
+  data() {
+    return {
+      images: [Picture1]
+    };
   }
 };
 </script>

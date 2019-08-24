@@ -1,7 +1,7 @@
 <template>
   <div>
     <svg-icon
-      class="inline-block text-white weathersvgs ml-6 mt-16"
+      class="inline-block text-white weathersvgs ml-6 mt-8"
       :name="getSvgIcon"
       v-if="weather"
     />
