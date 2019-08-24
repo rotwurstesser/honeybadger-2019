@@ -4,7 +4,7 @@
       <svg-icon class="mt-16" name="close" />
     </div>
 
-    <weather-display />
+    <weather-display :showTemperature="false" />
     <div class="text-white mt-8 ml-6">
       <h1 class="font-bold text-3xl">Das Wetter wird sonniger!</h1>
       <span

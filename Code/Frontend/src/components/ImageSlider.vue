@@ -3,7 +3,7 @@
     <span
       class="text-right text-white block mb-2 mr-4 cursor-pointer slider-toggler"
       @click="showAll = !showAll"
-    >{{ showAll ? "Weniger Anzeigen" : "Mehr Anzeigen" }}</span>
+    >{{ showAll ? "Weniger" : "Mehr" }}</span>
     <div :class="showAll ? 'ig-image-slider-all' : 'ig-image-slider'" v-if="images">
       <img
         class="ig-image"
