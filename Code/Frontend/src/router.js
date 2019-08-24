@@ -12,11 +12,6 @@ export default new Router({
       component: Home
     },
     {
-      path: "home",
-      name: "home",
-      component: Home
-    },
-    {
       path: "/onboarding",
       name: "onboarding",
       // route level code-splitting

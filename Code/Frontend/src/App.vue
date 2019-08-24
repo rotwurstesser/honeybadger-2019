@@ -6,7 +6,7 @@
       <router-link to="/onboarding">
         <span class="nav__link">Onboarding</span>
       </router-link>
-      <router-link to="/home">
+      <router-link to="/">
         <span class="nav__link">Home</span>
       </router-link>
     </nav>
@@ -15,7 +15,7 @@
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
