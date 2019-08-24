@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 var (
@@ -56,59 +57,74 @@ func main() {
 
 		enableCors(&w)
 
-		if WeatherCache != "" {
-			fmt.Fprintln(w, WeatherCache)
-			return
-		}
-
-		resp, err := http.Get("https://api.darksky.net/forecast/5375e67e1f87323c4b9b9ef18c29f5db/46.020714,7.749117")
-
-		if err != nil {
-			fmt.Println(err.Error())
-		}
-
-		defer resp.Body.Close()
-		body, err := ioutil.ReadAll(resp.Body)
-
-		if err != nil {
-			fmt.Println(err.Error())
-		}
-
-		var weatherResponse WeatherResponse
-		if err := json.Unmarshal(body, &weatherResponse); err != nil {
-			log.Fatal(err)
-		}
-
-		switch weatherResponse.Currently.Icon {
-		case "clear-day", "clear-night", "sleet", "wind", "partly-cloudy-day", "partly-cloudy-night", "cloudy":
-			{
-				weatherResponse.Currently.Icon = "sunny"
-				break
-			}
-		case "rain", "snow", "hail", "thunderstorm", "tornado":
-			{
-				weatherResponse.Currently.Icon = "rainy"
-				break
-			}
-		case "fog":
-			{
-				weatherResponse.Currently.Icon = "foggy"
-				break
-			}
-		default:
-			{
-				weatherResponse.Currently.Icon = "sunny"
-			}
-		}
-
-		value, _ := json.Marshal(weatherResponse.Currently)
-
-		WeatherCache = string(value)
-
-		fmt.Fprintln(w, string(value))
+		fmt.Fprintln(w, WeatherCache)
 	})
 
+	go StartWeatherThread()
+
 	log.Fatal(http.ListenAndServe(":1569", nil))
+}
+
+func StartWeatherThread() {
+	for {
+		GetWeather()
+		time.Sleep(time.Duration(time.Hour * 4))
+	}
+}
+
+func GetWeather() {
+	resp, err := http.Get("https://api.darksky.net/forecast/5375e67e1f87323c4b9b9ef18c29f5db/46.020714,7.749117")
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
+	var weatherResponse WeatherResponse
+	if err := json.Unmarshal(body, &weatherResponse); err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	weatherResponse.Currently.Icon = GetIcon(weatherResponse.Currently.Icon)
+
+	weatherResponse.Daily.Data[3].Icon = GetIcon(weatherResponse.Daily.Data[3].Icon)
+
+	weatherResponseStruct := WeatherResponseStruct{Currently: weatherResponse.Currently, Future: weatherResponse.Daily.Data[3]}
+
+	value, _ := json.Marshal(weatherResponseStruct)
+
+	WeatherCache = string(value)
+}
+
+func GetIcon(icon string) string {
+	switch icon {
+	case "clear-day", "clear-night", "sleet", "wind", "partly-cloudy-day", "partly-cloudy-night", "cloudy":
+		{
+			return "sunny"
+			break
+		}
+	case "rain", "snow", "hail", "thunderstorm", "tornado":
+		{
+			return "rainy"
+			break
+		}
+	case "fog":
+		{
+			return "foggy"
+			break
+		}
+
+	}
+	return "sunny"
 }
 
 // Just for testing purposes
@@ -182,99 +198,43 @@ type InstagramResponse struct {
 	} `json:"graphql"`
 }
 
+type WeatherResponseStruct struct {
+	Currently WeatherStruct
+	Future    WeatherStruct
+}
+
+type WeatherStruct struct {
+	Time                 int     `json:"time"`
+	Summary              string  `json:"summary"`
+	Icon                 string  `json:"icon"`
+	NearestStormDistance int     `json:"nearestStormDistance"`
+	PrecipIntensity      float64 `json:"precipIntensity"`
+	PrecipProbability    float64 `json:"precipProbability"`
+	PrecipType           string  `json:"precipType"`
+	Temperature          float64 `json:"temperature"`
+	ApparentTemperature  float64 `json:"apparentTemperature"`
+	DewPoint             float64 `json:"dewPoint"`
+	Humidity             float64 `json:"humidity"`
+	Pressure             float64 `json:"pressure"`
+	WindSpeed            float64 `json:"windSpeed"`
+	WindGust             float64 `json:"windGust"`
+	WindBearing          int     `json:"windBearing"`
+	CloudCover           float64 `json:"cloudCover"`
+	UvIndex              int     `json:"uvIndex"`
+	Visibility           float64 `json:"visibility"`
+	Ozone                float64 `json:"ozone"`
+}
+
 type WeatherResponse struct {
-	Latitude  float64 `json:"latitude"`
-	Longitude float64 `json:"longitude"`
-	Timezone  string  `json:"timezone"`
-	Currently struct {
-		Time                 int     `json:"time"`
-		Summary              string  `json:"summary"`
-		Icon                 string  `json:"icon"`
-		NearestStormDistance int     `json:"nearestStormDistance"`
-		PrecipIntensity      float64 `json:"precipIntensity"`
-		PrecipProbability    float64 `json:"precipProbability"`
-		PrecipType           string  `json:"precipType"`
-		Temperature          float64 `json:"temperature"`
-		ApparentTemperature  float64 `json:"apparentTemperature"`
-		DewPoint             float64 `json:"dewPoint"`
-		Humidity             float64 `json:"humidity"`
-		Pressure             float64 `json:"pressure"`
-		WindSpeed            float64 `json:"windSpeed"`
-		WindGust             float64 `json:"windGust"`
-		WindBearing          int     `json:"windBearing"`
-		CloudCover           float64 `json:"cloudCover"`
-		UvIndex              int     `json:"uvIndex"`
-		Visibility           float64 `json:"visibility"`
-		Ozone                float64 `json:"ozone"`
-	} `json:"currently"`
-	Hourly struct {
-		Summary string `json:"summary"`
-		Icon    string `json:"icon"`
-		Data    []struct {
-			Time                int     `json:"time"`
-			Summary             string  `json:"summary"`
-			Icon                string  `json:"icon"`
-			PrecipIntensity     float64 `json:"precipIntensity"`
-			PrecipProbability   float64 `json:"precipProbability"`
-			Temperature         float64 `json:"temperature"`
-			ApparentTemperature float64 `json:"apparentTemperature"`
-			DewPoint            float64 `json:"dewPoint"`
-			Humidity            float64 `json:"humidity"`
-			Pressure            float64 `json:"pressure"`
-			WindSpeed           float64 `json:"windSpeed"`
-			WindGust            float64 `json:"windGust"`
-			WindBearing         int     `json:"windBearing"`
-			CloudCover          float64 `json:"cloudCover"`
-			UvIndex             int     `json:"uvIndex"`
-			Visibility          float64 `json:"visibility"`
-			Ozone               float64 `json:"ozone"`
-			PrecipType          string  `json:"precipType,omitempty"`
-		} `json:"data"`
-	} `json:"hourly"`
-	Daily struct {
-		Summary string `json:"summary"`
-		Icon    string `json:"icon"`
-		Data    []struct {
-			Time                        int     `json:"time"`
-			Summary                     string  `json:"summary"`
-			Icon                        string  `json:"icon"`
-			SunriseTime                 int     `json:"sunriseTime"`
-			SunsetTime                  int     `json:"sunsetTime"`
-			MoonPhase                   float64 `json:"moonPhase"`
-			PrecipIntensity             float64 `json:"precipIntensity"`
-			PrecipIntensityMax          float64 `json:"precipIntensityMax"`
-			PrecipIntensityMaxTime      int     `json:"precipIntensityMaxTime"`
-			PrecipProbability           float64 `json:"precipProbability"`
-			PrecipType                  string  `json:"precipType"`
-			TemperatureHigh             float64 `json:"temperatureHigh"`
-			TemperatureHighTime         int     `json:"temperatureHighTime"`
-			TemperatureLow              float64 `json:"temperatureLow"`
-			TemperatureLowTime          int     `json:"temperatureLowTime"`
-			ApparentTemperatureHigh     float64 `json:"apparentTemperatureHigh"`
-			ApparentTemperatureHighTime int     `json:"apparentTemperatureHighTime"`
-			ApparentTemperatureLow      float64 `json:"apparentTemperatureLow"`
-			ApparentTemperatureLowTime  int     `json:"apparentTemperatureLowTime"`
-			DewPoint                    float64 `json:"dewPoint"`
-			Humidity                    float64 `json:"humidity"`
-			Pressure                    float64 `json:"pressure"`
-			WindSpeed                   float64 `json:"windSpeed"`
-			WindGust                    float64 `json:"windGust"`
-			WindGustTime                int     `json:"windGustTime"`
-			WindBearing                 int     `json:"windBearing"`
-			CloudCover                  float64 `json:"cloudCover"`
-			UvIndex                     int     `json:"uvIndex"`
-			UvIndexTime                 int     `json:"uvIndexTime"`
-			Visibility                  float64 `json:"visibility"`
-			Ozone                       float64 `json:"ozone"`
-			TemperatureMin              float64 `json:"temperatureMin"`
-			TemperatureMinTime          int     `json:"temperatureMinTime"`
-			TemperatureMax              float64 `json:"temperatureMax"`
-			TemperatureMaxTime          int     `json:"temperatureMaxTime"`
-			ApparentTemperatureMin      float64 `json:"apparentTemperatureMin"`
-			ApparentTemperatureMinTime  int     `json:"apparentTemperatureMinTime"`
-			ApparentTemperatureMax      float64 `json:"apparentTemperatureMax"`
-			ApparentTemperatureMaxTime  int     `json:"apparentTemperatureMaxTime"`
-		} `json:"data"`
+	Latitude  float64       `json:"latitude"`
+	Longitude float64       `json:"longitude"`
+	Timezone  string        `json:"timezone"`
+	Currently WeatherStruct `json:"currently"`
+	Hourly    WeatherStruct `json:"hourly"`
+	Daily     struct {
+		Summary string          `json:"summary"`
+		Icon    string          `json:"icon"`
+		Data    []WeatherStruct `json:"data"`
 	} `json:"daily"`
 	Flags struct {
 		Sources           []string `json:"sources"`
