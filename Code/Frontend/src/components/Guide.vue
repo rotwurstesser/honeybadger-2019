@@ -16,7 +16,9 @@
     </div>
 
     <div class="guide-slider -m-2">
-      <image-slider :images="images" />
+      <router-link to="/detail">
+        <image-slider :images="images" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -36,11 +38,14 @@ export default {
   },
   data() {
     return {
-      images: getImages()
+      images: []
     };
   },
   computed: {
     ...mapState(["weather"])
+  },
+  created() {
+this.images = this.getImages()
   },
   methods: {
     getBackground() {

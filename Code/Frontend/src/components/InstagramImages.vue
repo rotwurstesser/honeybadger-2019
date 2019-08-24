@@ -2,7 +2,7 @@
   <div>
     <span
       class="text-right font-bold text-lg text-white block mb-2 mr-4 cursor-pointer slider-toggler"
-      @click="showAll = !showAll"
+      @click.prevent="showAll = !showAll"
     >
       {{ showAll ? "Weniger Anzeigen" : "Mehr Anzeigen" }}
     </span>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24">
+    <g fill-rule="evenodd">
+        <path d="M0 0h24v24H0z" opacity=".8"/>
+        <circle cx="11.35" cy="3.696" r="2.25" stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width=".9"/>
+        <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width=".9" d="M12.52 9.55a.9.9 0 0 1-.694-.326l-1.736-1.94a1.35 1.35 0 0 0-2.183.27l-3.14 5.834c-.111.203-.169.43-.167.662v2.831l-1.658 3.313a1.35 1.35 0 1 0 2.416 1.208l1.8-3.6A1.35 1.35 0 0 0 7.3 17.2v-1.53l1.594.29a1.35 1.35 0 0 1 1.08 1.035l.511 2.3a1.35 1.35 0 0 0 2.635-.585l-.51-2.305A4.041 4.041 0 0 0 9.382 13.3l-1.362-.246 1.37-2.545a4.19 4.19 0 0 0 3.35 1.742h2.21a1.35 1.35 0 0 0 0-2.7h-2.43zM3.904 10.513a.9.9 0 0 1-1.23.323l-.774-.454a.9.9 0 0 1-.328-1.232L4.07 4.876A.9.9 0 0 1 5.3 4.553l.777.455a.9.9 0 0 1 .322 1.23l-2.496 4.275z"/>
+        <path stroke="#FFF" stroke-linecap="round" stroke-linejoin="round" stroke-width=".9" d="M9.1 20.796l-1.35 1.35h14.4M21.7 1.45L20.202 3.7a1.8 1.8 0 0 0-.302.99v2.76a1.8 1.8 0 0 1-.527 1.273l-.746.745a1.8 1.8 0 0 0-.527 1.273v4.195c0 1.06-1.4 2.821-2.574 3.61"/>
+    </g>
+</svg>
