@@ -8,6 +8,11 @@ import (
 	"net/http"
 )
 
+var (
+	// Cache it for the whole lifetime of the backend
+	WeatherCache string
+)
+
 func main() {
 
 	http.HandleFunc("/instagram", func(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +45,6 @@ func main() {
 
 		value, _ := json.Marshal(srcResponse)
 
-
 		fmt.Fprintln(w, string(value))
 
 	})
@@ -48,6 +52,11 @@ func main() {
 	http.HandleFunc("/weather", func(w http.ResponseWriter, r *http.Request) {
 
 		enableCors(&w)
+
+		if WeatherCache != "" {
+			fmt.Fprintln(w, WeatherCache)
+			return
+		}
 
 		resp, err := http.Get("https://api.darksky.net/forecast/5375e67e1f87323c4b9b9ef18c29f5db/46.020714,7.749117")
 
@@ -68,24 +77,30 @@ func main() {
 		}
 
 		switch weatherResponse.Currently.Icon {
-		case "clear-day", "clear-night", "sleet", "wind", "partly-cloudy-day", "partly-cloudy-night", "cloudy": {
-			weatherResponse.Currently.Icon = "sunny"
-			break
-		}
-		case "rain", "snow", "hail", "thunderstorm", "tornado": {
-			weatherResponse.Currently.Icon = "rainy"
-			break
-		}
-		case "fog": {
-			weatherResponse.Currently.Icon = "foggy"
-			break
-		}
-		default: {
-			weatherResponse.Currently.Icon = "sunny"
-		}
+		case "clear-day", "clear-night", "sleet", "wind", "partly-cloudy-day", "partly-cloudy-night", "cloudy":
+			{
+				weatherResponse.Currently.Icon = "sunny"
+				break
+			}
+		case "rain", "snow", "hail", "thunderstorm", "tornado":
+			{
+				weatherResponse.Currently.Icon = "rainy"
+				break
+			}
+		case "fog":
+			{
+				weatherResponse.Currently.Icon = "foggy"
+				break
+			}
+		default:
+			{
+				weatherResponse.Currently.Icon = "sunny"
+			}
 		}
 
 		value, _ := json.Marshal(weatherResponse.Currently)
+
+		WeatherCache = string(value)
 
 		fmt.Fprintln(w, string(value))
 	})
@@ -187,7 +202,7 @@ type WeatherResponse struct {
 		CloudCover           float64 `json:"cloudCover"`
 		UvIndex              int     `json:"uvIndex"`
 		Visibility           float64 `json:"visibility"`
-		Ozone                float64     `json:"ozone"`
+		Ozone                float64 `json:"ozone"`
 	} `json:"currently"`
 	Hourly struct {
 		Summary string `json:"summary"`
@@ -196,8 +211,8 @@ type WeatherResponse struct {
 			Time                int     `json:"time"`
 			Summary             string  `json:"summary"`
 			Icon                string  `json:"icon"`
-			PrecipIntensity     float64     `json:"precipIntensity"`
-			PrecipProbability   float64     `json:"precipProbability"`
+			PrecipIntensity     float64 `json:"precipIntensity"`
+			PrecipProbability   float64 `json:"precipProbability"`
 			Temperature         float64 `json:"temperature"`
 			ApparentTemperature float64 `json:"apparentTemperature"`
 			DewPoint            float64 `json:"dewPoint"`
