@@ -3,11 +3,11 @@
     <img class="opacity-75" :src="require('@/assets/detailasset.png')" alt="" />
     <router-link to="/Guide">
       <svg-icon
-        class="absolute mr-12 mt-24 right-0 svg-icon text-white top-0"
+        class="absolute mr-12 mt-16 right-0 svg-icon text-white top-0"
         name="close"
       />
     </router-link>
-    <div class="-mt-56 relative videobox mx-6">
+    <div class="-mt-48 mx-6 relative videobox">
       <div
         v-if="paused"
         class="darkener rounded-squarecard absolute w-full h-full"
@@ -23,7 +23,7 @@
     </div>
 
     <div class="p-6">
-      <h3 class="pb-8">
+      <h3 class="pb-8 pt-4">
         Riffelsee, der Seelen-Spiegel des Matterhorns oberhalb von Zermatt
       </h3>
       <div class="actionbutton ">
