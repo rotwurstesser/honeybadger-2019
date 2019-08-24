@@ -23,27 +23,31 @@
     </div>
 
     <div class="p-6">
-      <h3>
+      <h3 class="pb-8">
         Riffelsee, der Seelen-Spiegel des Matterhorns oberhalb von Zermatt
       </h3>
       <div class="actionbutton ">
         <svg-icon class="mr-2" name="camera" /><span>
           Fotopoint:Riffelsee Spiegelung
         </span>
+        <svg-icon class="chevron" name="chevron" />
       </div>
       <div class="actionbutton ">
         <svg-icon class="mr-2" name="train" />
         <span>Anreise: 10min ab Station Rotenboden</span>
+        <svg-icon class="chevron" name="chevron" />
       </div>
       <div class="actionbutton ">
         <svg-icon class="mr-2" name="flower" />
         <span>Seltene Blumen und Pflanzen</span>
+        <svg-icon class="chevron" name="chevron" />
       </div>
       <div class="actionbutton ">
         <svg-icon class="mr-2" name="climbing-mountain" />
         <span>Ausgangspunkt für Kletterrouten am Riffelhorn</span>
+        <svg-icon class="chevron" name="chevron" />
       </div>
-      <p>
+      <p class="pt-8">
         Mit der Gornergrat Bahn fahren Sie direkt ab Zermatt bis zur Station
         Rotenboden, die vorletzte Station vor dem Gornergrat. Ab Bahnhof
         Rotenboden nehmen Sie den Wanderweg und marschieren auf dem Riffelseeweg
@@ -86,9 +90,15 @@ export default {
 <style lang="postcss">
 .detail {
   & .actionbutton {
-    @apply p-5 py-6 w-full bg-GornerGratGold text-white flex flex-row my-5 font-bold;
+    @apply relative p-5 py-6 w-full bg-GornerGratGold text-white flex flex-row my-5 font-bold;
     & svg {
       @apply self-center;
+    }
+    & .chevron {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
     }
     border-radius: 5px;
     box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
