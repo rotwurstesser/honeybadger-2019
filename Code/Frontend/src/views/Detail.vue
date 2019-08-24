@@ -26,10 +26,23 @@
       <h3>
         Riffelsee, der Seelen-Spiegel des Matterhorns oberhalb von Zermatt
       </h3>
-      <h5 class="text-GornerGratGrey3 py-2 text-lg font-bold">
-        Eingebettet in der felsigen Berglandschaft ist er umringt von
-        schneebedeckten 4000er strahlt und vor sich hin – der Riffelsee.
-      </h5>
+      <div class="actionbutton ">
+        <svg-icon class="mr-2" name="camera" /><span>
+          Fotopoint:Riffelsee Spiegelung
+        </span>
+      </div>
+      <div class="actionbutton ">
+        <svg-icon class="mr-2" name="train" />
+        <span>Anreise: 10min ab Station Rotenboden</span>
+      </div>
+      <div class="actionbutton ">
+        <svg-icon class="mr-2" name="flower" />
+        <span>Seltene Blumen und Pflanzen</span>
+      </div>
+      <div class="actionbutton ">
+        <svg-icon class="mr-2" name="climbing-mountain" />
+        <span>Ausgangspunkt für Kletterrouten am Riffelhorn</span>
+      </div>
       <p>
         Mit der Gornergrat Bahn fahren Sie direkt ab Zermatt bis zur Station
         Rotenboden, die vorletzte Station vor dem Gornergrat. Ab Bahnhof
@@ -72,6 +85,14 @@ export default {
 
 <style lang="postcss">
 .detail {
+  & .actionbutton {
+    @apply p-5 py-6 w-full bg-GornerGratGold text-white flex flex-row my-5 font-bold;
+    & svg {
+      @apply self-center;
+    }
+    border-radius: 5px;
+    box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.06);
+  }
   & h3 {
     @apply text-3xl font-bold;
   }
