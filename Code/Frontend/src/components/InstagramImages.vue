@@ -60,7 +60,7 @@ export default {
 }
 .ig-image {
   @apply p-2;
-  min-width: calc(100% - 1.5em);
+  min-width: calc(100% - 2em);
   height: auto;
 }
 </style>

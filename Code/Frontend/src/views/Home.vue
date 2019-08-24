@@ -2,7 +2,10 @@
   <div class="home m-6 ">
     <WeatherDisplay />
     <h3 class="-mb-8">Angebote</h3>
-    <InstagramImages hashtag="gornerbahn" />
+    <router-link to="guide">
+      <InstagramImages hashtag="gornerbahn" />
+    </router-link>
+
     <h3 class="-mb-8 mt-12">Aktivitäten</h3>
     <InstagramImages hashtag="mountainclimbing" />
     <h3 class="mt-12">Interaktive Map</h3>

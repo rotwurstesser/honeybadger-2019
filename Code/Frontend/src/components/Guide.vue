@@ -1,7 +1,9 @@
 <template>
   <div class="guide h-full bg-GornerGratGold p-6 pb-20">
     <div class="flex justify-end mr-6">
-      <svg-icon class="mt-16 text-white" name="close" />
+      <router-link to="/">
+        <svg-icon class="mt-16 text-white" name="close" />
+      </router-link>
     </div>
 
     <weather-display :showTemperature="false" />
