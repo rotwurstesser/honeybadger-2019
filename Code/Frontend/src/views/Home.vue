@@ -1,5 +1,5 @@
 <template>
-  <div class="home p-5 pt-0 mb-6">
+  <div class="home">
     <WeatherDisplay />
     <InstagramImages hashtag="zermatt" />
     Home!

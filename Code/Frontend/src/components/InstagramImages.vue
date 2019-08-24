@@ -1,6 +1,7 @@
 <template>
-  <div v-if="images">
+  <div class="ig-image-slider" v-if="images">
     <img
+      class="ig-image pl-2"
       v-for="(image, index) in images"
       :key="'igimage' + hashtag + index"
       :src="image"
@@ -34,4 +35,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="postcss" scoped>
+.ig-image-slider {
+  @apply flex overflow-scroll;
+}
+.ig-image {
+  min-width: calc(100% - 1.5em);
+  height: auto;
+}
+</style>
