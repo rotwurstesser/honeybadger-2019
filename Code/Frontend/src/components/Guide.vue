@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen m-6">
+  <div class="guide h-full bg-GornerGratGold p-6 pb-20">
     <div class="flex justify-end mr-6">
       <svg-icon class="mt-16" name="close" />
     </div>
@@ -7,15 +7,15 @@
     <weather-display :showTemperature="false" />
     <div class="text-white mt-8 ml-6">
       <h1 class="font-bold text-3xl">Das Wetter wird sonniger!</h1>
-      <span
-        class="inline-block mt-4 text-2xl"
-      >Perfekte Gelegenheit, um das Alpenpanorama zu geniessen!</span>
+      <span class="inline-block mt-4 text-2xl"
+        >Perfekte Gelegenheit, um das Alpenpanorama zu geniessen!</span
+      >
     </div>
     <div class="mt-20 opacity-50 text-2xl negative-margin">
       <span>Schönwetterprogramm</span>
     </div>
 
-    <div>
+    <div class="guide-slider">
       <image-slider :images="images" />
     </div>
   </div>
@@ -42,11 +42,16 @@ export default {
 };
 </script>
 
-<style lang="postcss" scoped>
-.negative-margin {
-  margin-bottom: -1.75rem;
-}
-html {
-  @apply bg-GornerGratGold;
+<style lang="postcss">
+.guide {
+  & .negative-margin {
+    margin-bottom: -1.75rem;
+  }
+
+  & img.ig-image {
+    min-width: max-content;
+    width: 248px;
+    height: auto;
+  }
 }
 </style>
