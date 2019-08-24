@@ -23,6 +23,7 @@ func main() {
 
 		if err != nil {
 			fmt.Println(err.Error())
+			return
 		}
 
 		defer resp.Body.Close()
@@ -30,11 +31,13 @@ func main() {
 
 		if err != nil {
 			fmt.Println(err.Error())
+			return
 		}
 
 		var response InstagramResponse
 		if err := json.Unmarshal(body, &response); err != nil {
 			log.Fatal(err)
+			return
 		}
 
 		var srcResponse []string
