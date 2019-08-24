@@ -14,7 +14,7 @@
 </template>
 
 <style>
-html {
+html body {
   @apply font-sans;
 }
 </style>
