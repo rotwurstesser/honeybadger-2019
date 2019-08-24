@@ -1,22 +1,20 @@
 <template>
   <div class="home">
     <WeatherDisplay />
-    <InstagramImages hashtag="gornergrat" />
-    Home!
+    <h3>Angebote</h3>
+    <InstagramImages hashtag="gornerbahn" />
+    <h3>Aktivitäten</h3>
+    <InstagramImages hashtag="mountainclimbing" />
   </div>
 </template>
 
 <script>
-import InstagramImages from '../components/InstagramImages.vue';
-import WeatherDisplay from '../components/WeatherDisplay.vue';
+import InstagramImages from "../components/InstagramImages.vue";
+import WeatherDisplay from "../components/WeatherDisplay.vue";
 export default {
-  name: 'home',
+  name: "home",
   components: { WeatherDisplay, InstagramImages }
 };
 </script>
 
-<style lang="postcss">
-body {
-  @apply bg-GornerGratGold;
-}
-</style>
+<style lang="postcss"></style>
