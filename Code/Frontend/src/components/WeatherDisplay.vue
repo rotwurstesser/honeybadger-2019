@@ -1,6 +1,10 @@
 <template>
   <div>
-    <svg-icon class="inline-block" :name="getSvgIcon" v-if="weather" />
+    <svg-icon
+      class="inline-block text-white weathersvgs ml-6 mt-10"
+      :name="getSvgIcon"
+      v-if="weather"
+    />
     <span v-if="weather">{{getTemperature(weather.Currently.temperature)}}</span>
   </div>
 </template>
@@ -64,4 +68,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="postcss" scoped>
+.weathersvgs {
+  width: 128px;
+  height: 128px;
+}
+</style>
