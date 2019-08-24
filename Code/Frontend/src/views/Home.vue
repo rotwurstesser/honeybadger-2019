@@ -5,6 +5,13 @@
     <InstagramImages hashtag="gornerbahn" />
     <h3>Aktivitäten</h3>
     <InstagramImages hashtag="mountainclimbing" />
+    <h3>Interaktive Map</h3>
+    <iframe
+      class="p-5"
+      src="https://openmaptiles.github.io/positron-gl-style/#8/46.0190/7.7460"
+      width="100%"
+      height="480"
+    ></iframe>
   </div>
 </template>
 
