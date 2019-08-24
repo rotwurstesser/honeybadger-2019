@@ -1,6 +1,6 @@
 <template>
-  <div class="home m-6 ">
-    <WeatherDisplay />
+  <div class="home m-6">
+    <WeatherDisplay :weather="weather" />
     <h3 class="-mb-8">Angebote</h3>
     <router-link to="guide">
       <InstagramImages hashtag="gornerbahn" />
@@ -20,9 +20,35 @@
 <script>
 import InstagramImages from "../components/InstagramImages.vue";
 import WeatherDisplay from "../components/WeatherDisplay.vue";
+import axios from "axios";
 export default {
   name: "home",
-  components: { WeatherDisplay, InstagramImages }
+  components: { WeatherDisplay, InstagramImages },
+  data() {
+    return {
+      weather: {}
+    };
+  },
+  created() {
+    this.getWeather();
+  },
+  methods: {
+    getWeather() {
+      axios
+        .get("http://5.9.112.47:1569/weather")
+        .then(result => {
+          const data = result.data;
+          this.$store.commit("setWeather", data);
+        })
+        .catch(error => {
+          console.error(error);
+          this.weather = {
+            temperature: 10,
+            icon: "sunny"
+          };
+        });
+    }
+  }
 };
 </script>
 
