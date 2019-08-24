@@ -1,21 +1,21 @@
 <template>
   <div class="guide h-full bg-GornerGratGold p-6 pb-20">
     <div class="flex justify-end mr-6">
-      <svg-icon class="mt-16" name="close" />
+      <svg-icon class="mt-16 text-white" name="close" />
     </div>
 
     <weather-display :showTemperature="false" />
-    <div class="text-white mt-8 ml-6">
+    <div class="text-white mt-8">
       <h1 class="font-bold text-3xl">Das Wetter wird sonniger!</h1>
-      <span class="inline-block mt-4 text-2xl"
-        >Perfekte Gelegenheit, um das Alpenpanorama zu geniessen!</span
-      >
+      <span class="inline-block mt-4 text-2xl">
+        Perfekte Gelegenheit, um das Alpenpanorama zu geniessen!
+      </span>
     </div>
     <div class="mt-20 opacity-50 text-2xl negative-margin">
-      <span>Schönwetterprogramm</span>
+      <span class="font-bold">Schönwetterprogramm</span>
     </div>
 
-    <div class="guide-slider">
+    <div class="guide-slider -m-2">
       <image-slider :images="images" />
     </div>
   </div>
@@ -48,10 +48,15 @@ export default {
     margin-bottom: -1.75rem;
   }
 
+  & .ig-image-slider-all {
+    @apply mt-4;
+  }
+
   & img.ig-image {
-    min-width: max-content;
+    min-width: inherit;
     width: 248px;
     height: auto;
+    @apply rounded-squarecard;
   }
 }
 </style>
