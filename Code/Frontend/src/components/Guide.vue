@@ -18,7 +18,9 @@
     </div>
 
     <div class="guide-slider -m-2">
-      <image-slider :images="images" />
+      <router-link to="/detail">
+        <image-slider :images="images" />
+      </router-link>
     </div>
   </div>
 </template>

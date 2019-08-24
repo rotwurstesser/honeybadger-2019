@@ -12,7 +12,8 @@
     "core-js": "^2.6.5",
     "postcss-preset-env": "^6.7.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3"
+    "vue-router": "^3.0.3",
+    "vue-video-section": "^1.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.10.0",

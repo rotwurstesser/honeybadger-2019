@@ -1,17 +1,28 @@
 <template>
   <div>
-    <span class="text-right text-white block mb-2 mr-4 cursor-pointer slider-toggler" @click="showAll = !showAll">{{
-      showAll ? 'Weniger' : 'Mehr'
-    }}</span>
-    <div :class="showAll ? 'ig-image-slider-all' : 'ig-image-slider'" v-if="images">
-      <img class="ig-image" v-for="(image, index) in images" :key="'igimage' + index" :src="image" :alt="'image'" />
+    <span
+      class="text-right text-white block mb-2 mr-4 cursor-pointer slider-toggler"
+      @click="showAll = !showAll"
+      >{{ showAll ? "Weniger" : "Mehr" }}</span
+    >
+    <div
+      :class="showAll ? 'ig-image-slider-all' : 'ig-image-slider'"
+      v-if="images"
+    >
+      <img
+        class="ig-image"
+        v-for="(image, index) in images"
+        :key="'igimage' + index"
+        :src="image"
+        :alt="'image'"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ImageSlider',
+  name: "ImageSlider",
   props: {
     images: {
       required: true,
