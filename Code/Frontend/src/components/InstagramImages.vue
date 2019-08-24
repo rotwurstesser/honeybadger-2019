@@ -1,7 +1,7 @@
 <template>
   <div>
     <span
-      class="text-right text-white block mb-2 mr-4 cursor-pointer"
+      class="text-right text-white block mb-2 mr-4 cursor-pointer slider-toggler"
       @click="showAll = !showAll"
     >
       {{ showAll ? "Weniger Anzeigen" : "Mehr Anzeigen" }}

@@ -24,4 +24,8 @@ export default {
 };
 </script>
 
-<style lang="postcss"></style>
+<style lang="postcss">
+.slider-toggler {
+  @apply text-black;
+}
+</style>
