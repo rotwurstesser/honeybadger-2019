@@ -1,13 +1,19 @@
 <template>
   <div class="ig-image-slider" v-if="images">
-    <img class="ig-image" v-for="(image, index) in images" :key="'igimage' + hashtag + index" :src="image" :alt="'instagram image of ' + hashtag" />
+    <img
+      class="ig-image pl-2"
+      v-for="(image, index) in images"
+      :key="'igimage' + hashtag + index"
+      :src="image"
+      :alt="'instagram image of ' + hashtag"
+    />
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 export default {
-  name: 'InstagramImages',
+  name: "InstagramImages",
   data() {
     return {
       images: null
@@ -16,13 +22,15 @@ export default {
   props: {
     hashtag: {
       type: String,
-      default: 'gornergrat'
+      default: "gornergrat"
     }
   },
   created() {
-    axios.get('http://5.9.112.47:1569/instagram?hashtag=' + this.hashtag).then(result => {
-      this.images = result.data;
-    });
+    axios
+      .get("http://5.9.112.47:1569/instagram?hashtag=" + this.hashtag)
+      .then(result => {
+        this.images = result.data;
+      });
   }
 };
 </script>
@@ -32,7 +40,7 @@ export default {
   @apply flex overflow-scroll;
 }
 .ig-image {
-  @apply min-w-full;
+  min-width: calc(100% - 1.5em);
   height: auto;
 }
 </style>
