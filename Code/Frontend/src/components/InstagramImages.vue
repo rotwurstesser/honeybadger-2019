@@ -1,12 +1,23 @@
 <template>
-  <div class="ig-image-slider" v-if="images">
-    <img
-      class="ig-image pl-2"
-      v-for="(image, index) in images"
-      :key="'igimage' + hashtag + index"
-      :src="image"
-      :alt="'instagram image of ' + hashtag"
-    />
+  <div>
+    <span
+      class="text-right text-white block mr-4 cursor-pointer"
+      @click="showAll = !showAll"
+    >
+      {{ showAll ? "Weniger Anzeigen" : "Mehr Anzeigen" }}
+    </span>
+    <div
+      :class="showAll ? 'ig-image-slider-all' : 'ig-image-slider'"
+      v-if="images"
+    >
+      <img
+        class="ig-image"
+        v-for="(image, index) in images"
+        :key="'igimage' + hashtag + index"
+        :src="image"
+        :alt="'instagram image of ' + hashtag"
+      />
+    </div>
   </div>
 </template>
 
@@ -16,7 +27,8 @@ export default {
   name: "InstagramImages",
   data() {
     return {
-      images: null
+      images: null,
+      showAll: false
     };
   },
   props: {
@@ -37,9 +49,17 @@ export default {
 
 <style lang="postcss" scoped>
 .ig-image-slider {
-  @apply flex overflow-scroll;
+  @apply flex flex-row overflow-scroll;
+}
+.ig-image-slider--all {
+  @apply flex flex-row flex-col;
+  .ig-image {
+    min-width: 100%;
+    @apply px-0;
+  }
 }
 .ig-image {
+  @apply px-2;
   min-width: calc(100% - 1.5em);
   height: auto;
 }
