@@ -1,11 +1,11 @@
 <template>
   <div>
     <svg-icon
-      class="inline-block text-white weathersvgs ml-6 mt-10"
+      class="inline-block text-white weathersvgs ml-6 mt-16"
       :name="getSvgIcon"
       v-if="weather"
     />
-    <span v-if="weather">{{getTemperature(weather.Currently.temperature)}}</span>
+    <span v-if="weather && showTemperature">{{getTemperature(weather.Currently.temperature)}}</span>
   </div>
 </template>
 
@@ -17,6 +17,12 @@ export default {
   name: "WeatherDisplay",
   components: {
     SvgIcon
+  },
+  props: {
+    showTemperature: {
+      required: false,
+      default: false
+    }
   },
   data() {
     return {
