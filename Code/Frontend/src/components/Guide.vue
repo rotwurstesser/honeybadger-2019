@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-GornerGratGold h-screen">
+  <div class="h-screen m-6">
     <div class="flex justify-end mr-6">
       <svg-icon class="mt-16" name="close" />
     </div>
@@ -11,7 +11,7 @@
         class="inline-block mt-4 text-2xl"
       >Perfekte Gelegenheit, um das Alpenpanorama zu geniessen!</span>
     </div>
-    <div class="mt-20 opacity-50 text-2xl">
+    <div class="mt-20 opacity-50 text-2xl negative-margin">
       <span>Schönwetterprogramm</span>
     </div>
 
@@ -43,4 +43,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.negative-margin {
+  margin-bottom: -1.75rem;
+}
+html {
+  @apply bg-GornerGratGold;
+}
 </style>
