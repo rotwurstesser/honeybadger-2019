@@ -1,7 +1,7 @@
 <template>
   <div>
     <span
-      class="text-right text-white block mb-2 mr-4 cursor-pointer slider-toggler"
+      class="text-right font-bold text-lg text-white block mb-2 mr-4 cursor-pointer slider-toggler"
       @click="showAll = !showAll"
     >
       {{ showAll ? "Weniger Anzeigen" : "Mehr Anzeigen" }}
@@ -49,7 +49,7 @@ export default {
 
 <style lang="postcss" scoped>
 .ig-image-slider {
-  @apply flex flex-row overflow-scroll;
+  @apply flex flex-row overflow-scroll -m-2;
 }
 .ig-image-slider--all {
   @apply flex flex-row flex-col;
@@ -59,7 +59,7 @@ export default {
   }
 }
 .ig-image {
-  @apply px-2;
+  @apply p-2;
   min-width: calc(100% - 1.5em);
   height: auto;
 }

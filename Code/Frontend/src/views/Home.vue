@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home m-6 ">
     <WeatherDisplay />
     <h3>Angebote</h3>
     <InstagramImages hashtag="gornerbahn" />
@@ -25,7 +25,26 @@ export default {
 </script>
 
 <style lang="postcss">
-.slider-toggler {
-  @apply text-black;
+.home {
+  & h3 {
+    @apply text-3xl;
+  }
+  & .weather-component {
+    & span,
+    & svg {
+      @apply text-black;
+    }
+    & span {
+      font-size: 35px;
+      @apply ml-2;
+    }
+    & .weathersvgs {
+      width: 60px;
+      margin-top: 0;
+    }
+  }
+  & .slider-toggler {
+    color: black;
+  }
 }
 </style>
