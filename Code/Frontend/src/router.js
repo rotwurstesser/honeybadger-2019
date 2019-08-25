@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Detail from "./views/Detail.vue";
+import Onboarding from "./views/Onboarding.vue";
 
 Vue.use(Router);
 
@@ -17,6 +18,11 @@ export default new Router({
       path: "/detail",
       name: "detail",
       component: Detail
+    },
+    {
+      path: "/onboarding",
+      name: "onboarding",
+      component: Onboarding
     },
     {
       path: "/onboarding",
