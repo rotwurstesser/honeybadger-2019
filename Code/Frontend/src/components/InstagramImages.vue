@@ -1,30 +1,17 @@
 <template>
   <div>
-    <span
-      class="text-right font-bold text-lg text-white block mb-2 mr-4 cursor-pointer slider-toggler"
-      @click.prevent="showAll = !showAll"
-    >
-      {{ showAll ? "Weniger Anzeigen" : "Mehr Anzeigen" }}
-    </span>
-    <div
-      :class="showAll ? 'ig-image-slider-all' : 'ig-image-slider'"
-      v-if="images"
-    >
-      <img
-        class="ig-image"
-        v-for="(image, index) in images"
-        :key="'igimage' + hashtag + index"
-        :src="image"
-        :alt="'instagram image of ' + hashtag"
-      />
-    </div>
+    <image-slider :images="images" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import ImageSlider from "@/components/ImageSlider";
 export default {
   name: "InstagramImages",
+  components: {
+    ImageSlider
+  },
   data() {
     return {
       images: null,
@@ -41,7 +28,9 @@ export default {
     axios
       .get("http://5.9.112.47:1569/instagram?hashtag=" + this.hashtag)
       .then(result => {
-        this.images = result.data;
+        this.images = result.data.map(element => {
+          return { src: element, text: "" };
+        });
       });
   }
 };

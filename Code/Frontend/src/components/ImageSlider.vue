@@ -2,19 +2,19 @@
   <div>
     <span
       class="text-right text-white block mb-2 mr-4 cursor-pointer slider-toggler z-10 relative"
-      @click="showAll = !showAll"
+      @click.prevent="showAll = !showAll"
     >
       {{
       showAll ? 'Weniger' : 'Mehr'
       }}
     </span>
     <div :class="showAll ? 'ig-image-slider-all' : 'ig-image-slider'" v-if="images">
-      <div class="ig-image-container relative" v-for="(image, index) in images" :key="index">
+      <div class="ig-image-container relative mb-2" v-for="(image, index) in images" :key="index">
         <img class="ig-image" :src="image.src" alt="image" />
         <span @click.prevent="changeFavorite">
           <svg-icon
             :name="svgIcon"
-            class="absolute mr-6 mt-4 right-0 svg-icon svg-icon--icn-star-filled top-0 cursor-pointer"
+            :class="'absolute mr-6 right-0 svg-icon svg-icon--icn-star-filled top-0 cursor-pointer ' + getMarginTop()"
           />
         </span>
 
@@ -51,6 +51,12 @@ export default {
       } else {
         this.svgIcon = "icn-star-outline";
       }
+    },
+    getMarginTop() {
+      if (this.showAll) {
+        return "mt-8";
+      }
+      return "mt-4";
     }
   }
 };
@@ -70,9 +76,10 @@ export default {
   }
 }
 .ig-image {
-  @apply px-2;
+  @apply pr-2;
   min-width: calc(100% - 2em);
   height: 248px;
+  @apply rounded-squarecard;
 }
 .ig-image-container {
   min-width: 248px;
