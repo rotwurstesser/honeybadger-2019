@@ -16,6 +16,9 @@ var (
 
 func main() {
 
+	// Initial data to prevent api problems
+	WeatherCache = "{\"Currently\":{\"time\":1566713236,\"summary\":\"Clear\",\"icon\":\"sunny\",\"nearestStormDistance\":0,\"precipIntensity\":0,\"precipProbability\":0,\"precipType\":\"\",\"temperature\":48.38,\"apparentTemperature\":44.42,\"dewPoint\":29.91,\"humidity\":0.49,\"pressure\":1021.79,\"windSpeed\":8.91,\"windGust\":8.91,\"windBearing\":48,\"cloudCover\":0,\"uvIndex\":0,\"visibility\":8.17,\"ozone\":298.2},\"Future\":{\"time\":1566943200,\"summary\":\"Possible light rain in the evening.\",\"icon\":\"rainy\",\"nearestStormDistance\":0,\"precipIntensity\":0.0046,\"precipProbability\":0.5,\"precipType\":\"rain\",\"temperature\":0,\"apparentTemperature\":0,\"dewPoint\":38.95,\"humidity\":0.58,\"pressure\":1018.83,\"windSpeed\":2.26,\"windGust\":7.16,\"windBearing\":140,\"cloudCover\":0.94,\"uvIndex\":4,\"visibility\":8.53,\"ozone\":286.7}}"
+
 	http.HandleFunc("/instagram", func(w http.ResponseWriter, r *http.Request) {
 
 		enableCors(&w)
