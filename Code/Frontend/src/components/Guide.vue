@@ -1,7 +1,7 @@
 <template>
   <div :class="'guide h-full p-6 pb-20 ' + getBackground()">
     <div class="flex justify-end mr-6">
-      <router-link to="/">
+      <router-link to="/Home">
         <svg-icon class="mt-8 text-white" name="close" />
       </router-link>
     </div>
@@ -45,7 +45,7 @@ export default {
     ...mapState(["weather"])
   },
   created() {
-this.images = this.getImages()
+    this.images = this.getImages();
   },
   methods: {
     getBackground() {

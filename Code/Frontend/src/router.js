@@ -10,7 +10,7 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "/home",
       name: "home",
       component: Home
     },
@@ -20,18 +20,9 @@ export default new Router({
       component: Detail
     },
     {
-      path: "/onboarding",
+      path: "/",
       name: "onboarding",
       component: Onboarding
-    },
-    {
-      path: "/onboarding",
-      name: "onboarding",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/Onboarding.vue")
     },
     {
       path: "/guide",
