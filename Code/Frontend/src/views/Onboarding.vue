@@ -28,7 +28,7 @@
             <svg-icon class="text-black" name="trekking-person" />
             <span class="choice-text">Alleine</span>
           </div>
-          <div @click.prevent="setNextStep(2)" class="choice">
+          <div @click.prevent="setNextStep(3)" class="choice">
             <svg-icon class="text-black" name="family-child" />
             <span class="choice-text">Mit der Familie</span>
           </div>
@@ -38,7 +38,7 @@
             <svg-icon class="text-black" name="family-home" />
             <span class="choice-text">Mit Freunden</span>
           </div>
-          <div @click.prevent="setNextStep(2)" class="choice">
+          <div @click.prevent="setNextStep(3)" class="choice">
             <svg-icon class="text-black" name="dating-couple-balloon" />
             <span class="choice-text">Mit dem Partner</span>
           </div>
