@@ -12,7 +12,7 @@
       <span class="inline-block mt-4 text-2xl">{{getSubtitle()}}</span>
     </div>
     <div class="mt-20 opacity-50 text-2xl negative-margin">
-      <span class="font-bold">Schönwetterprogramm</span>
+      <span class="font-bold">{{getImagesHeader()}}</span>
     </div>
 
     <div class="guide-slider -m-2">
@@ -106,6 +106,26 @@ export default {
           return "Geniessen sie unser Alpenpanorama im Schnee.";
         default:
           return "Perfekte Gelegenheit, um das Alpenpanorama zu geniessen!";
+      }
+    },
+    getImagesHeader() {
+      if (!this.weather) {
+        return;
+      }
+      if (this.weather.Currently.temperature < 53) {
+        return "Ab in die Kälte";
+      }
+      switch (this.weather.Currently.icon) {
+        case "sunny":
+          return "Schönwetterprogramm";
+        case "foggy":
+          return "Nebelprogramm";
+        case "rainy":
+          return "Regenprogramm";
+        case "snow":
+          return "Schneeprogramm";
+        default:
+          return "Schönwetterprogramm";
       }
     },
     getImages() {
