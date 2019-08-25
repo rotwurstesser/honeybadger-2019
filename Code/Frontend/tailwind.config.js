@@ -16,7 +16,10 @@ module.exports = {
       GornerGratGold: "#EAAF0F",
       GornerGratGrey1: "#333333",
       GornerGratGrey2: "#6b6b6b",
-      GornerGratGrey3: "#C6C6C6"
+      GornerGratGrey3: "#C6C6C6",
+      cold: "#5ac8fa",
+      fog: "#6B6B6B",
+      rain: "#433F9A"
     },
     spacing: {
       px: "1px",

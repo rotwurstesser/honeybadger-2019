@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import SvgIcon from "@/components/SvgIcon";
+import { mapState } from "vuex";
 
 export default {
   name: "WeatherDisplay",
@@ -24,18 +24,14 @@ export default {
       default: true
     }
   },
-  data() {
-    return {
-      weather: {}
-    };
-  },
-  created() {
-    this.weather = this.getWeather();
-  },
   computed: {
+    ...mapState(["weather"]),
     getSvgIcon() {
-      if (!this.weather) {
+      if (!this.weather && this.weather.Currently) {
         return;
+      }
+      if (this.weather.Currently.temperature < 53 && !this.showTemperature) {
+        return "temperature-thermometer-down";
       }
       switch (this.weather.Currently.icon) {
         case "sunny":
@@ -44,28 +40,14 @@ export default {
           return "weather-cloud-wind-3";
         case "rainy":
           return "weather-cloud-heavy-rain";
+        case "snow":
+          return "ice-snowflake-invert";
         default:
           return "weather-sun";
       }
     }
   },
   methods: {
-    getWeather() {
-      axios
-        .get("http://5.9.112.47:1569/weather")
-        .then(result => {
-          const data = result.data;
-          this.weather = data;
-          console.log(this.weather);
-        })
-        .catch(error => {
-          console.error(error);
-          this.weather = {
-            temperature: 10,
-            icon: "sunny"
-          };
-        });
-    },
     getTemperature() {
       // Convert Fahrenheit to celsius and round it
       return Math.round((5 / 9) * (this.weather.Currently.temperature - 32));

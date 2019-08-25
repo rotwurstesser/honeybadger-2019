@@ -13,6 +13,7 @@
     "postcss-preset-env": "^6.7.0",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vuex": "^3.0.1",
     "vue-video-section": "^1.0.2"
   },
   "devDependencies": {

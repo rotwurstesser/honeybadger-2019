@@ -112,7 +112,7 @@ func GetIcon(icon string) string {
 			return "sunny"
 			break
 		}
-	case "rain", "snow", "hail", "thunderstorm", "tornado":
+	case "rain", "hail", "thunderstorm", "tornado":
 		{
 			return "rainy"
 			break
@@ -122,7 +122,10 @@ func GetIcon(icon string) string {
 			return "foggy"
 			break
 		}
-
+	case "snow": {
+		return "snow"
+		break
+	}
 	}
 	return "sunny"
 }
