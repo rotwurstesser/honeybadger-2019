@@ -2,12 +2,26 @@
   <div>
     <div class="onboarding p-6">
       <div class="steps mx-16 mb-6">
-        <div @click="step = 1" :class="step === 1 ? 'step--active' : ''" class="step"></div>
-        <div @click="step = 2" :class="step === 2 ? 'step--active' : ''" class="step"></div>
-        <div @click="step = 3" :class="step === 3 ? 'step--active' : ''" class="step"></div>
+        <div
+          @click="step = 1"
+          :class="step === 1 ? 'step--active' : ''"
+          class="step"
+        ></div>
+        <div
+          @click="step = 2"
+          :class="step === 2 ? 'step--active' : ''"
+          class="step"
+        ></div>
+        <div
+          @click="step = 3"
+          :class="step === 3 ? 'step--active' : ''"
+          class="step"
+        ></div>
       </div>
       <div v-if="step === 1" class="questionWrap">
-        <h2 class="text-GornerGratGold text-xl text-center font-bold mb-2">Was trifft zu</h2>
+        <h2 class="text-GornerGratGold text-xl text-center font-bold mb-2">
+          Was trifft zu
+        </h2>
         <h3 class="text-GornerGratGold text-lg text-center">Ich bin</h3>
         <div class="choice-row">
           <div @click.prevent="setNextStep(2)" class="choice">
@@ -21,7 +35,9 @@
         </div>
       </div>
       <div v-if="step === 2" class="questionWrap">
-        <h2 class="text-GornerGratGold text-xl text-center font-bold mb-2">Mit wem bist du hier?</h2>
+        <h2 class="text-GornerGratGold text-xl text-center font-bold mb-2">
+          Mit wem bist du hier?
+        </h2>
         <h3 class="text-GornerGratGold text-lg text-center">Wähle aus</h3>
         <div class="choice-row">
           <div @click.prevent="setNextStep(3)" class="choice">
@@ -45,9 +61,9 @@
         </div>
       </div>
       <div v-if="step === 3" class="questionWrap">
-        <h2
-          class="text-GornerGratGold text-xl text-center font-bold mb-2"
-        >Das würde ich gerne machen</h2>
+        <h2 class="text-GornerGratGold text-xl text-center font-bold mb-2">
+          Das würde ich gerne machen
+        </h2>
         <h3 class="text-GornerGratGold text-lg text-center">Wähle aus</h3>
         <div class="choice-row">
           <div @click.prevent="activate()" class="choice">
@@ -55,17 +71,17 @@
             <span class="choice-text">Wandern</span>
           </div>
           <div @click.prevent="activate()" class="choice">
-            <svg-icon class="text-black" name="family-child" />
+            <svg-icon class="text-black" name="cam" />
             <span class="choice-text">Fotografieren</span>
           </div>
         </div>
         <div class="choice-row">
           <div @click.prevent="activate()" class="choice">
-            <svg-icon class="text-black" name="family-home" />
+            <svg-icon class="text-black" name="climb" />
             <span class="choice-text">Klettern</span>
           </div>
           <div @click.prevent="activate()" class="choice">
-            <svg-icon class="text-black" name="dating-couple-balloon" />
+            <svg-icon class="text-black" name="food" />
             <span class="choice-text">Essen</span>
           </div>
         </div>
@@ -76,12 +92,14 @@
       <span
         class="absolute bottom-0 mb-10 ml-10 text-white text-2xl"
         @click.prevent="goToNextStep()"
-      >Skip</span>
+        >Skip</span
+      >
       <span
         v-if="step === 3"
         class="absolute bottom-0 right-0 mr-10 mb-10 text-white text-2xl"
         @click.prevent="goToHome()"
-      >Weiter -></span>
+        >Weiter -></span
+      >
     </footer>
   </div>
 </template>
