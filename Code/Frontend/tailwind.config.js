@@ -268,9 +268,15 @@ module.exports = {
     },
     padding: theme => theme("spacing"),
     placeholderColor: theme => theme("colors"),
-    stroke: {
-      current: "currentColor"
-    },
+    stroke: theme => ({
+      current: "currentColor",
+      black: theme("colors.black"),
+      white: theme("colors.white"),
+      GornerGratGold: theme("colors.GornerGratGold"),
+      GornerGratGrey1: theme("colors.GornerGratGrey1"),
+      GornerGratGrey2: theme("colors.GornerGratGrey2"),
+      GornerGratGrey3: theme("colors.GornerGratGrey3")
+    }),
     textColor: theme => theme("colors"),
     width: theme => ({
       auto: "auto",
